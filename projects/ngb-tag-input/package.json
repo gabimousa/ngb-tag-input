@@ -1,0 +1,14 @@
+{
+  "name": "ngb-tag-input",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0",
+    "@angular/forms": "~7.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.2",
+    "bootstrap": "^4.2.1",
+    "jquery": "^3.3.1",
+    "popper": "^1.0.1",
+    "rxjs": "~6.3.3"
+  }
+}

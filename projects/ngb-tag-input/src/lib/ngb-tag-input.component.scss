@@ -1,0 +1,50 @@
+.component-container {
+  position: relative;
+  .typeahead-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    min-height: 2.5rem;
+    height: auto;
+    padding: 0;
+    padding-left: 10px;
+
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+
+
+    input {
+      border: none;
+      height: 20px;
+      flex: 1 1 100px;
+      padding: 0;
+    }
+    input:focus {
+      box-shadow: none;
+    }
+
+    .selected-item {
+      height: 25px;
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+
+      .remove-item {
+        cursor: pointer;
+        margin-left: 5px;
+        font-size: 12pt;
+      }
+    }
+  }
+  div.disabled-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(145, 145, 145, 0.199)
+  }
+}

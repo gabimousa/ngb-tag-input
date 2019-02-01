@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngb-tag-input": [
+        "dist/ngb-tag-input"
+      ],
+      "ngb-tag-input/*": [
+        "dist/ngb-tag-input/*"
+      ]
+    }
   }
 }

@@ -1,0 +1,25 @@
+<div class="component-container">
+    <div
+    class="disabled typeahead-container"
+    (click)="focusEditor()">
+    <span
+        class="selected-item font-italic"
+        *ngFor="let item of selectedItems">
+        {{searchField ? item[searchField] : item}}
+        <span class="remove-item" (click)="removeItem(item)">&times;</span>
+    </span>
+    <input #searchInput
+        id="typeahead-basic"
+        type="text"
+        class="form-control"
+        [ngbTypeahead]="typeaheadSearch"
+        [(ngModel)]="inputValue"
+        (selectItem)="onSelectItem($event)"
+        (blur)="onBlur($event)"
+        (keydown)="canAdd || $event.preventDefault()"
+        (keydown.backspace)="onBackspace($event)"
+        (keydown.enter)="applyValue($event.target)" />
+  </div>
+  <div class="disabled-overlay" *ngIf="disabled"></div>
+</div>
+

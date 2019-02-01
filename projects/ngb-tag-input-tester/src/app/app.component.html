@@ -1,0 +1,16 @@
+<br>
+<div style="padding: 0 10px;">
+  <ngb-tag-input [data]="states" [disabled]="disabled" (selectionChange)="otherSelectedValues = $event"></ngb-tag-input>
+</div>
+<br>
+{{otherSelectedValues | json}}
+<br><br>
+<button class="btn btn-primary" (click)="toggleDisabled()">toggle disabled</button>
+<br><br>
+<form #form="ngForm">
+  <div style="padding: 0 10px;">
+      <ngb-tag-input #mymultiselect name="mymultiselect" [data]="states" [(ngModel)]="selectedValues" [maxSelectCount]="3"></ngb-tag-input>
+  </div>
+</form>
+<br>
+{{selectedValues | json}}
