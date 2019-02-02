@@ -35,7 +35,7 @@ export class NgbTagInputComponent<T extends any | string> implements ControlValu
 
   private search = (term: string) => {
     if (!!this.searchField) {
-      return this.data.filter(o => o[this.searchField].toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10);
+      return this.data.map(o => o[this.searchField]).filter(s => s.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10);
     } else {
       return this.data.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10);
     }

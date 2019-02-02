@@ -1,16 +1,26 @@
-<br>
-<div style="padding: 0 10px;">
-  <ngb-tag-input [data]="states" [disabled]="disabled" (selectionChange)="otherSelectedValues = $event"></ngb-tag-input>
+<h2>Binding to strings with selectionChange event</h2>
+<div class="example-tag-input">
+  <ngb-tag-input [data]="states" [(ngModel)]="selectedStrings1" [disabled]="disabled" (selectionChange)="selectionChanges($event)"></ngb-tag-input>
+  <br>
+  <button class="btn btn-primary" (click)="toggleDisabled()">toggle disabled</button>
 </div>
-<br>
-{{otherSelectedValues | json}}
-<br><br>
-<button class="btn btn-primary" (click)="toggleDisabled()">toggle disabled</button>
-<br><br>
+<pre>
+  {{selectedStrings1 | json}}
+</pre>
+<h2>Binding to strings with Max Select count = 3</h2>
 <form #form="ngForm">
-  <div style="padding: 0 10px;">
-      <ngb-tag-input #mymultiselect name="mymultiselect" [data]="states" [(ngModel)]="selectedValues" [maxSelectCount]="3"></ngb-tag-input>
+  <div class="example-tag-input">
+      <ngb-tag-input #mymultiselect name="mymultiselect" [data]="states" [(ngModel)]="selectedStrings2" [maxSelectCount]="3"></ngb-tag-input>
   </div>
 </form>
-<br>
-{{selectedValues | json}}
+<pre>
+    {{selectedStrings2 | json}}
+</pre>
+<h2>Binding to objects with selectionChange event</h2>
+<div class="example-tag-input">
+  <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects1" [disabled]="disabled" (selectionChange)="selectionChanges($event)"></ngb-tag-input>
+</div>
+<pre>
+  {{selectedObjects1 | json}}
+</pre>
+
