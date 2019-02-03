@@ -18,7 +18,7 @@
 </pre>
 <h2>Binding to objects with selectionChange event</h2>
 <div class="example-tag-input">
-  <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects1" [disabled]="disabled" (selectionChange)="selectionChanges($event)"></ngb-tag-input>
+  <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects1" (selectionChange)="selectionChanges($event)"></ngb-tag-input>
 </div>
 <pre>
   {{selectedObjects1 | json}}
