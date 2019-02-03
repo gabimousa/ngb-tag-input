@@ -1,29 +1,32 @@
 # ngb-tag-input
-typeahead with multiple selected items
-# NgbTagInput
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+This component extends the typeahead component of ng-bootstrap so that it supports multiselect. This enables the user to select multiple items from the list provided list of strings or objects.
+When a list of object is supplied then the `[searchField]` property needs to be supplied to let the ngb-tag-input know which property of the objects it should use for searching.
 
-## Development server
+# Quickstart
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Create an Angular app in Angular 7
+- npm install --save bootstrap
+- npm install --save jquery
+- npm install --save popper
+- npm install --save @ng-bootstrap/ng-bootstrap
 
-## Code scaffolding
+Add `@import "~bootstrap"` In the styles.scss file in the root of your project. This will add bootstrap styling to your app.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Add the following import to app.module.ts
 
-## Build
+    import { NgbTagInputModule } from  'ngb-tag-input';
+    import { FormsModule } from  '@angular/forms';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Then add `FormsModule` and `NgbTagInputModule` to the imports.
 
-## Running unit tests
+That's all. You can start using component now.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Add the following property to your app.component.ts
 
-## Running end-to-end tests
+    selectedStates: string[] = [];
+    states  = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado'];
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Then Add the following html to app.component.html
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    <ngb-tag-input [data]="states" [(ngModel)]="selectedStates"></ngb-tag-input>
