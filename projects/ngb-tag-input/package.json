@@ -1,6 +1,6 @@
 {
   "name": "ngb-tag-input",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
@@ -10,5 +10,11 @@
     "jquery": "^3.3.1",
     "popper": "^1.0.1",
     "rxjs": "~6.3.3"
-  }
+  },
+  "keywords": [
+    "tags",
+    "typeahead",
+    "multiselect"
+  ],
+  "license": "MIT"
 }
