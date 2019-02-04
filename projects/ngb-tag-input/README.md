@@ -10,6 +10,7 @@ When a list of object is supplied then the `[searchField]` property needs to be 
 - npm install --save jquery
 - npm install --save popper
 - npm install --save @ng-bootstrap/ng-bootstrap
+- npm install --save ngb-tag-input
 
 Add `@import "~bootstrap"` In the styles.scss file in the root of your project. This will add bootstrap styling to your app.
 
