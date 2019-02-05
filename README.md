@@ -31,3 +31,5 @@ Add the following property to your app.component.ts
 Then Add the following html to app.component.html
 
     <ngb-tag-input [data]="states" [(ngModel)]="selectedStates"></ngb-tag-input>
+
+Look at ngb-tag-input-tester for more examples
