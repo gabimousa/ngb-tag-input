@@ -16,5 +16,10 @@
     "typeahead",
     "multiselect"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/gabimousa/ngb-tag-input",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gabimousa/ngb-tag-input.git"
+  }
 }

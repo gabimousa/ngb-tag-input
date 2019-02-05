@@ -5,7 +5,7 @@
   <button class="btn btn-primary" (click)="toggleDisabled()">toggle disabled</button>
 </div>
 <pre>
-  {{selectedStrings1 | json}}
+  Selected Values: {{selectedStrings1 | json}}
 </pre>
 <h2>Binding to strings with Max Select count = 3</h2>
 <form #form="ngForm">
@@ -14,19 +14,19 @@
   </div>
 </form>
 <pre>
-    {{selectedStrings2 | json}}
+  Selected Values: {{selectedStrings2 | json}}
 </pre>
 <h2>Binding to objects with selectionChange event</h2>
 <div class="example-tag-input">
   <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects1" (selectionChange)="selectionChanges($event)"></ngb-tag-input>
 </div>
 <pre>
-  {{selectedObjects1 | json}}
+  Selected Values: {{selectedObjects1 | json}}
 </pre>
 <h2>Binding to objects with custom searchFunc</h2>
 <div class="example-tag-input">
-  <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects1" [searchFunc]="mySearchFunc"></ngb-tag-input>
+  <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects2" [searchFunc]="mySearchFunc"></ngb-tag-input>
 </div>
 <pre>
-  {{selectedObjects1 | json}}
+  Selected Values: {{selectedObjects1 | json}}
 </pre>

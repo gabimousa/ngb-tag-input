@@ -12,6 +12,7 @@ export class AppComponent {
   selectedStrings1 = [];
   selectedStrings2 = [];
   selectedObjects1 = [];
+  selectedObjects2 = [];
 
   states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
   'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',

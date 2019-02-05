@@ -1,11 +1,7 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
-
-function isStringArray(x: any): x is string[] {
-  return !!x;
-}
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,7 +14,7 @@ function isStringArray(x: any): x is string[] {
     multi: true
   }]
 })
-export class NgbTagInputComponent<T extends string | any> implements ControlValueAccessor, OnInit {
+export class NgbTagInputComponent<T extends string | any> implements ControlValueAccessor {
   editorFocused = false;
   inputValue = '';
   selectedItems: T[] = [];
@@ -28,28 +24,30 @@ export class NgbTagInputComponent<T extends string | any> implements ControlValu
   @Input() disabled = false;
   @Input() maxSelectCount = 0;
   @Output() selectionChange = new EventEmitter<T[]>();
-  typeaheadSearch: (term$: Observable<string>) => Observable<T[]>;
-  private defaultSearchFunc = (text$: Observable<string>) => text$.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    filter(term => term.length >= 2 ),
-    map(term => {
-      return this.search(term);
-    })
-  )
-  @Input() set searchFunc(func: (term$: Observable<string>) => Observable<T[]>) {
+  defaultSearchFunc: (term$: Observable<string>) => Observable<string[]>;
+  typeaheadSearch: (term$: Observable<string>) => Observable<string[]>;
+
+  @Input() set searchFunc(func: (term$: Observable<string>) => Observable<string[]>) {
     this.typeaheadSearch = func || this.defaultSearchFunc;
   }
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    this.defaultSearchFunc = (text$: Observable<string>) => text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => {
+        if (term.length < 1) {
+          return [];
+        }
+        return this.search(term);
+      })
+    );
     this.typeaheadSearch = this.defaultSearchFunc;
   }
 
   onChange: (value: T[]) => void = (value) => null;
   onTouched: () => void = () => null;
 
-  private search: (term: string) => T[] = (term: string) => {
+  private search: (term: string) => string[] = (term: string) => {
     if (!!this.searchField) {
       return this.data.map(o => o[this.searchField]).filter(s => s.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10);
     } else {
