@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
@@ -18,7 +18,7 @@ function isStringArray(x: any): x is string[] {
     multi: true
   }]
 })
-export class NgbTagInputComponent<T extends any | string> implements ControlValueAccessor {
+export class NgbTagInputComponent<T extends string | any> implements ControlValueAccessor, OnInit {
   editorFocused = false;
   inputValue = '';
   selectedItems: T[] = [];
@@ -28,12 +28,28 @@ export class NgbTagInputComponent<T extends any | string> implements ControlValu
   @Input() disabled = false;
   @Input() maxSelectCount = 0;
   @Output() selectionChange = new EventEmitter<T[]>();
-
+  typeaheadSearch: (term$: Observable<string>) => Observable<T[]>;
+  private defaultSearchFunc = (text$: Observable<string>) => text$.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    filter(term => term.length >= 2 ),
+    map(term => {
+      return this.search(term);
+    })
+  )
+  @Input() set searchFunc(func: (term$: Observable<string>) => Observable<T[]>) {
+    this.typeaheadSearch = func || this.defaultSearchFunc;
+  }
   constructor() { }
+
+  ngOnInit() {
+    this.typeaheadSearch = this.defaultSearchFunc;
+  }
+
   onChange: (value: T[]) => void = (value) => null;
   onTouched: () => void = () => null;
 
-  private search = (term: string) => {
+  private search: (term: string) => T[] = (term: string) => {
     if (!!this.searchField) {
       return this.data.map(o => o[this.searchField]).filter(s => s.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10);
     } else {
@@ -49,14 +65,6 @@ export class NgbTagInputComponent<T extends any | string> implements ControlValu
     }
   }
 
-  typeaheadSearch = (text$: Observable<string>) => text$.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    filter(term => term.length >= 2 ),
-    map(term => {
-        return this.search(term);
-    })
-  )
 
   addToSelectedItems(item: T) {
     if (this.selectedItems.indexOf(item) === -1) {

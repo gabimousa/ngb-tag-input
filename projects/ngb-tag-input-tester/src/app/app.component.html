@@ -23,4 +23,10 @@
 <pre>
   {{selectedObjects1 | json}}
 </pre>
-
+<h2>Binding to objects with custom searchFunc</h2>
+<div class="example-tag-input">
+  <ngb-tag-input [data]="stateObjects" [searchField]="'name'" [(ngModel)]="selectedObjects1" [searchFunc]="mySearchFunc"></ngb-tag-input>
+</div>
+<pre>
+  {{selectedObjects1 | json}}
+</pre>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -39,4 +41,12 @@ export class AppComponent {
   toggleDisabled () {
     this.disabled = !this.disabled;
   }
+
+  mySearchFunc = (text$: Observable<string>) => text$.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    map(term => {
+      return this.stateObjects.map(o => o.name).filter(s => s.toLowerCase().startsWith(term.toLowerCase()));
+    })
+  )
 }
